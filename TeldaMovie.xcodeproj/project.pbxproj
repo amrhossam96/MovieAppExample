@@ -20,10 +20,10 @@
 		0A6F355D2CD9717800DBF0E8 /* Exceptions for "TeldaMovie" folder in "TeldaMovie" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Info.plist,
 				Packages/Core,
 				Packages/Networking,
 				Packages/Presentation,
+				Root/Info.plist,
 			);
 			target = 0A6F354A2CD9717700DBF0E8 /* TeldaMovie */;
 		};
