@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0A6F356E2CD9735A00DBF0E8 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 0A6F356D2CD9735A00DBF0E8 /* Core */; };
+		0A6F35702CD9735A00DBF0E8 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 0A6F356F2CD9735A00DBF0E8 /* Networking */; };
+		0A6F35722CD9735A00DBF0E8 /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = 0A6F35712CD9735A00DBF0E8 /* Presentation */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		0A6F354B2CD9717700DBF0E8 /* TeldaMovie.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TeldaMovie.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -15,6 +21,9 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
+				Packages/Core,
+				Packages/Networking,
+				Packages/Presentation,
 			);
 			target = 0A6F354A2CD9717700DBF0E8 /* TeldaMovie */;
 		};
@@ -36,6 +45,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A6F35702CD9735A00DBF0E8 /* Networking in Frameworks */,
+				0A6F35722CD9735A00DBF0E8 /* Presentation in Frameworks */,
+				0A6F356E2CD9735A00DBF0E8 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +58,7 @@
 			isa = PBXGroup;
 			children = (
 				0A6F354D2CD9717700DBF0E8 /* TeldaMovie */,
+				0A6F356C2CD9735A00DBF0E8 /* Frameworks */,
 				0A6F354C2CD9717700DBF0E8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -56,6 +69,13 @@
 				0A6F354B2CD9717700DBF0E8 /* TeldaMovie.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0A6F356C2CD9735A00DBF0E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -78,6 +98,9 @@
 			);
 			name = TeldaMovie;
 			packageProductDependencies = (
+				0A6F356D2CD9735A00DBF0E8 /* Core */,
+				0A6F356F2CD9735A00DBF0E8 /* Networking */,
+				0A6F35712CD9735A00DBF0E8 /* Presentation */,
 			);
 			productName = TeldaMovie;
 			productReference = 0A6F354B2CD9717700DBF0E8 /* TeldaMovie.app */;
@@ -150,7 +173,6 @@
 				INFOPLIST_FILE = TeldaMovie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -178,7 +200,6 @@
 				INFOPLIST_FILE = TeldaMovie/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -335,6 +356,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0A6F356D2CD9735A00DBF0E8 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		0A6F356F2CD9735A00DBF0E8 /* Networking */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Networking;
+		};
+		0A6F35712CD9735A00DBF0E8 /* Presentation */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Presentation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0A6F35432CD9717700DBF0E8 /* Project object */;
 }
