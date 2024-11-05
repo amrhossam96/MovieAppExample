@@ -12,5 +12,5 @@ public struct PresentableMovie {
     public let title: String
     public let overView: String
     public let image: URL
-    public let year: String
+    public let year: Date
 }

@@ -9,11 +9,11 @@ import Foundation
 import protocol Core.HomeMoviesLoaderProtocol
 import protocol Core.MoviesUseCase
 import struct Core.PresentableFeed
+import struct Core.PresentableMovie
 import Combine
 
 class HomeFeedViewModel: ObservableObject, MovieListUsesCases {
     var loader: HomeMoviesLoaderProtocol
-    
     
     // MARK: - Private
     
@@ -28,15 +28,17 @@ class HomeFeedViewModel: ObservableObject, MovieListUsesCases {
     }
     
     func viewDidLoad() {
-        print("HERE")
         retrieveGroupedMovies()
             .sink { completion in
                 print(completion)
             } receiveValue: { [weak self] result in
                 guard let self else { return }
                 self.presentableFeed = result
-                print(result)
             }
             .store(in: &subscriptions)
     }
+    
+//    func movies(for year: Date) -> [PresentableMovie] {
+//        return presentableFeed?.feed.groupedMovies[year] ?? []
+//    }
 }

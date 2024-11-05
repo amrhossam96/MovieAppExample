@@ -28,29 +28,32 @@ extension MoviesUseCase {
 private extension Publisher where Output == RemoteBaseResponse, Failure == Error {
     func mapToPresentableMovies() -> Publishers.Map<Self, PresentableFeed> {
         self.map { remoteResponse in
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
             let presentableMovies = remoteResponse.results.map {
                 PresentableMovie(
                     id: $0.id ?? 0,
                     title: $0.title ?? "no title",
                     overView: $0.overview ?? "no OverView",
                     image: URL(string: $0.posterPath ?? "") ?? URL(string: "https://default.url/image.png")!,
-                    year: $0.releaseDate ?? "no date"
+                    year: dateFormatter.date(from: $0.releaseDate ?? "") ?? Date(timeIntervalSince1970: 0)
                 )
             }
+
+            // Group and sort movies by date
+            let groupedMovies = Dictionary(grouping: presentableMovies) { $0.year }
+            let sortedFeed: [(Date, [PresentableMovie])] = groupedMovies
+                .map { (key: Date, value: [PresentableMovie]) in (key, value) }
+                .sorted { $0.0 > $1.0 }
             
-            
-            let groupedMovies = Dictionary(
-                grouping: presentableMovies,
-                by: MoviesGroupingPolicy.groupingPolicy
-            )
-            
-            let groupedMoviesStruct = GroupedMovies(groupedMovies: groupedMovies)
-            
+            // Wrap sortedFeed in GroupedMovies and use it in PresentableFeed
             return PresentableFeed(
                 isLastPage: remoteResponse.isLastPage,
-                feed: groupedMoviesStruct
+                feed: GroupedMovies(groupedMovies: sortedFeed)
             )
         }
     }
 }
+
 

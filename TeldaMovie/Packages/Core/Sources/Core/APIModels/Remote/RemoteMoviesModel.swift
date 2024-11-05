@@ -7,14 +7,13 @@
 
 import Foundation
 
-// MARK: - Welcome
 public struct RemoteBaseResponse: Decodable {
     let page: Int
     let results: [RemoteMoviesModel]
-    let totalPages, totalResults: Int
+    let totalPages, totalResults: Int?
     
     var isLastPage: Bool {
-        return page >= totalPages
+        return page >= totalPages ?? 0
     }
 }
 
@@ -31,6 +30,23 @@ public struct RemoteMoviesModel: Decodable {
     public let video: Bool?
     public let voteAverage: Double?
     public let voteCount: Int?
+
+    enum CodingKeys: String, CodingKey {
+        case adult
+        case backdropPath = "backdrop_path"
+        case genreIDS = "genre_ids"
+        case id
+        case originalLanguage = "original_language"
+        case originalTitle = "original_title"
+        case overview
+        case popularity
+        case posterPath = "poster_path"
+        case releaseDate = "release_date"
+        case title
+        case video
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
+    }
 }
 
 public enum OriginalLanguage: String, Decodable {

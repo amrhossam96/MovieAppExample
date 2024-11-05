@@ -13,5 +13,5 @@ public struct PresentableFeed {
 }
 
 public struct GroupedMovies {
-    public var groupedMovies: [Int: [PresentableMovie]]
+    public let groupedMovies: [(Date, [PresentableMovie])]
 }
