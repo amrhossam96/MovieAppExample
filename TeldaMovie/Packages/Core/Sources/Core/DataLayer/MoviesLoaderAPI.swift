@@ -11,4 +11,8 @@ import Combine
 
 public protocol MoviesLoaderAPI: NetworkService {
     func fetchMovies() -> AnyPublisher<RemoteBaseResponse, Error>
+    func fetchMovieDetails(with id: Int) -> AnyPublisher<RemoteMovieDetailsResponse, Error>
+    func fetchSimilarMovies(for id: Int) -> AnyPublisher<SimilarBaseResponse, Error>
+    func fetchCast(for id: Int) -> AnyPublisher<CastBaseResponse, Error>
+    func fetchMoviesBy(query: String) -> AnyPublisher<RemoteBaseResponse, Error>
 }

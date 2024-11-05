@@ -21,7 +21,7 @@ public protocol APIEndPoint {
 }
 
 public extension APIEndPoint {
-    var baseURL: URL { .init(string: "https://api.themoviedb.org/")! }
+    var baseURL: URL { .init(string: "https://api.themoviedb.org")! }
     var method: HTTPMethod { .get }
     var queryItems: [URLQueryItem]? { nil }
     var body: Data? { nil }

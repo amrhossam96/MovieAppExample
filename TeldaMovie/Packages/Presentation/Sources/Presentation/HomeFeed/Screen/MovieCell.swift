@@ -20,20 +20,19 @@ class MovieCell: UICollectionViewCell {
         return label
     }()
     
-    private let imageView: UIImageView = {
-        let imageView = UIImageView()
+    private let imageView: CustomImageView = {
+        let imageView = CustomImageView()
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .red
         return imageView
     }()
     
-    private let releaseYearLabel: UILabel = {
+    private let voteAverageLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .medium)
-        label.text = "2020"
+        label.text = "Vote:"
         return label
     }()
     
@@ -41,7 +40,7 @@ class MovieCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(imageView)
         contentView.addSubview(movieTitle)
-        contentView.addSubview(releaseYearLabel)
+        contentView.addSubview(voteAverageLabel)
         configureConstraints()
     }
     
@@ -60,8 +59,8 @@ class MovieCell: UICollectionViewCell {
         ]
         
         let releaseYearLabelConstraints = [
-            releaseYearLabel.leadingAnchor.constraint(equalTo: movieTitle.leadingAnchor),
-            releaseYearLabel.topAnchor.constraint(equalTo: movieTitle.bottomAnchor, constant: 8)
+            voteAverageLabel.leadingAnchor.constraint(equalTo: movieTitle.leadingAnchor),
+            voteAverageLabel.topAnchor.constraint(equalTo: movieTitle.bottomAnchor, constant: 8)
         ]
         
         NSLayoutConstraint.activate(imageViewContraints)
@@ -75,7 +74,7 @@ class MovieCell: UICollectionViewCell {
     
     func configure(with presentableMovie: PresentableMovie) {
         movieTitle.text = presentableMovie.title
-        let year = Calendar.current.component(.year, from: presentableMovie.year)
-        releaseYearLabel.text = "\(year)"
+        voteAverageLabel.text = "Vote \(presentableMovie.voteAverage)"
+        imageView.setImage(from: presentableMovie.image.absoluteString)
     }
 }

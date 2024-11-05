@@ -13,4 +13,5 @@ public struct PresentableMovie {
     public let overView: String
     public let image: URL
     public let year: Date
+    public let voteAverage: Double
 }

@@ -11,7 +11,7 @@ import Combine
 public protocol MoviesUseCase {
     var loader: HomeMoviesLoaderProtocol { get }
     func retrieveGroupedMovies() -> AnyPublisher<PresentableFeed, Error>
-    
+    func retrieveMovies(by query: String) -> AnyPublisher<PresentableFeed, Error>
 }
 
 extension MoviesUseCase {
@@ -22,32 +22,38 @@ extension MoviesUseCase {
             .eraseToAnyPublisher()
     }
     
-    
+    public func retrieveMovies(by query: String) -> AnyPublisher<PresentableFeed, Error> {
+        loader
+            .fetchMovies(by: query)
+            .mapToPresentableMovies()
+            .eraseToAnyPublisher()
+    }
 }
 
 private extension Publisher where Output == RemoteBaseResponse, Failure == Error {
     func mapToPresentableMovies() -> Publishers.Map<Self, PresentableFeed> {
-        self.map { remoteResponse in
+        map { remoteResponse in
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd"
-            
+
             let presentableMovies = remoteResponse.results.map {
-                PresentableMovie(
+                let releaseDate = dateFormatter.date(from: $0.releaseDate ?? "") ?? Date(timeIntervalSince1970: 0)
+                return PresentableMovie(
                     id: $0.id ?? 0,
                     title: $0.title ?? "no title",
                     overView: $0.overview ?? "no OverView",
-                    image: URL(string: $0.posterPath ?? "") ?? URL(string: "https://default.url/image.png")!,
-                    year: dateFormatter.date(from: $0.releaseDate ?? "") ?? Date(timeIntervalSince1970: 0)
+                    image: URL(string: "https://image.tmdb.org/t/p/w500" + ($0.posterPath ?? $0.backdropPath ?? ""))!,
+                    year: releaseDate,
+                    voteAverage: $0.voteAverage ?? 0
                 )
             }
 
-            // Group and sort movies by date
-            let groupedMovies = Dictionary(grouping: presentableMovies) { $0.year }
+            let groupedMovies = Dictionary(grouping: presentableMovies, by: MoviesGroupingPolicy.groupingPolicy)
+
             let sortedFeed: [(Date, [PresentableMovie])] = groupedMovies
                 .map { (key: Date, value: [PresentableMovie]) in (key, value) }
                 .sorted { $0.0 > $1.0 }
-            
-            // Wrap sortedFeed in GroupedMovies and use it in PresentableFeed
+
             return PresentableFeed(
                 isLastPage: remoteResponse.isLastPage,
                 feed: GroupedMovies(groupedMovies: sortedFeed)
@@ -55,5 +61,3 @@ private extension Publisher where Output == RemoteBaseResponse, Failure == Error
         }
     }
 }
-
-

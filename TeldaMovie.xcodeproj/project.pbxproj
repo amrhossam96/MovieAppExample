@@ -10,6 +10,7 @@
 		0A6F356E2CD9735A00DBF0E8 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 0A6F356D2CD9735A00DBF0E8 /* Core */; };
 		0A6F35702CD9735A00DBF0E8 /* Networking in Frameworks */ = {isa = PBXBuildFile; productRef = 0A6F356F2CD9735A00DBF0E8 /* Networking */; };
 		0A6F35722CD9735A00DBF0E8 /* Presentation in Frameworks */ = {isa = PBXBuildFile; productRef = 0A6F35712CD9735A00DBF0E8 /* Presentation */; };
+		0A7A4C7D2CDA3F4700FB5F62 /* netfox in Frameworks */ = {isa = PBXBuildFile; productRef = 0A7A4C7C2CDA3F4700FB5F62 /* netfox */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 			files = (
 				0A6F35702CD9735A00DBF0E8 /* Networking in Frameworks */,
 				0A6F35722CD9735A00DBF0E8 /* Presentation in Frameworks */,
+				0A7A4C7D2CDA3F4700FB5F62 /* netfox in Frameworks */,
 				0A6F356E2CD9735A00DBF0E8 /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -101,6 +103,7 @@
 				0A6F356D2CD9735A00DBF0E8 /* Core */,
 				0A6F356F2CD9735A00DBF0E8 /* Networking */,
 				0A6F35712CD9735A00DBF0E8 /* Presentation */,
+				0A7A4C7C2CDA3F4700FB5F62 /* netfox */,
 			);
 			productName = TeldaMovie;
 			productReference = 0A6F354B2CD9717700DBF0E8 /* TeldaMovie.app */;
@@ -131,6 +134,7 @@
 			mainGroup = 0A6F35422CD9717700DBF0E8;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				0A7A4C7B2CDA3F4700FB5F62 /* XCRemoteSwiftPackageReference "netfox" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0A6F354C2CD9717700DBF0E8 /* Products */;
@@ -361,6 +365,17 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		0A7A4C7B2CDA3F4700FB5F62 /* XCRemoteSwiftPackageReference "netfox" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kasketis/netfox";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.21.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		0A6F356D2CD9735A00DBF0E8 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -373,6 +388,11 @@
 		0A6F35712CD9735A00DBF0E8 /* Presentation */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Presentation;
+		};
+		0A7A4C7C2CDA3F4700FB5F62 /* netfox */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0A7A4C7B2CDA3F4700FB5F62 /* XCRemoteSwiftPackageReference "netfox" */;
+			productName = netfox;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
