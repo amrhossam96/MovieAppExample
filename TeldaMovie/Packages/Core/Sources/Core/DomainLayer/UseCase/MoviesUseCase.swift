@@ -44,11 +44,11 @@ private extension Publisher where Output == RemoteBaseResponse, Failure == Error
                 by: MoviesGroupingPolicy.groupingPolicy
             )
             
-            let groupedMoviesStruct = GroupedMovies(movies: groupedMovies)
+            let groupedMoviesStruct = GroupedMovies(groupedMovies: groupedMovies)
             
             return PresentableFeed(
                 isLastPage: remoteResponse.isLastPage,
-                movies: groupedMoviesStruct
+                feed: groupedMoviesStruct
             )
         }
     }

@@ -9,9 +9,9 @@ import Foundation
 
 public struct PresentableFeed {
     public var isLastPage: Bool
-    public var movies: GroupedMovies
+    public var feed: GroupedMovies
 }
 
 public struct GroupedMovies {
-    public var movies: [Int: [PresentableMovie]]
+    public var groupedMovies: [Int: [PresentableMovie]]
 }
